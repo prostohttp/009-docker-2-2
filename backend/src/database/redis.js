@@ -1,5 +1,7 @@
 const { createClient } = require("redis");
-const client = createClient();
+const client = createClient({
+	url: "redis://storage:6379",
+});
 
 const redisErrorHandler = () => {
 	client.on("error", (err) => console.log("Redis Client Error", err));

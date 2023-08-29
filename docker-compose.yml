@@ -1,0 +1,37 @@
+version: "1"
+
+services:
+  frontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      CHOKIDAR_USEPOLLING: true
+      PORT: "3000"
+      REDIS_URL: redis://storage
+    depends_on:
+      - storage
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+  backend:
+    build: ./backend
+    restart: always
+    ports:
+      - 3333:3333
+    environment:
+      CHOKIDAR_USEPOLLING: true
+      PORT: "3333"
+      REDIS_URL: redis://storage
+    depends_on:
+      - storage
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+  storage:
+    image: redis:latest
+    volumes:
+      - ./data:/data
+    ports:
+      - 6379:6379
