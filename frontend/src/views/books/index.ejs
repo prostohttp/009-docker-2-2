@@ -1,0 +1,18 @@
+<%- include('../theHeader.ejs') %>
+<h1 class="text-3xl text-center font-bold mb-[30px]">Все книги</h1>
+<div class="grid grid-cols-4 gap-[30px]">
+	<% books.map((book) => { %>
+	<div class="text-center bg-[#f7f7f7] rounded-[4px] overflow-hidden py-[20px] px-[15px] flex flex-col">
+    <a href="<%= "/books/" + book.id %>" class="flex h-[270px] items-center">
+      <img src="<%= book.filecover %>" alt="">
+    </a>
+    <a href="<%= "/books/" + book.id %>" class="font-bold leading-[20px] mb-[20px]">
+      <%= book.title %>
+    </a>
+    <p class="text-[13px]">
+      <%= book.description %>
+    </p>
+  </div>
+	<% }) %>
+</div>
+<%- include('../theFooter.ejs') %>

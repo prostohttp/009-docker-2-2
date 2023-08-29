@@ -1,0 +1,34 @@
+<%- include('../theHeader.ejs') %>
+<div class="flex justify-between items-center mb-[30px]">
+	<h1 class="text-3xl font-bold"><%= book.title %></h1>
+	<h3><strong>Просмотров книги: </strong><span><%= count %></span></h3>
+</div>
+<div class="flex gap-[30px]">
+	<img src="<%= book.filecover %>" class="w-[300px]" alt="<%= book.title %>" />
+	<div>
+		<p><%= book.description %></p>
+		<p class="mt-[20px] mb-[20px]">
+			<strong>Автор: </strong><%= book.authors %>
+		</p>
+		<div class="flex gap-[20px]">
+			<a
+				href="<%= book.filebook %>"
+				class="py-[10px] px-[20px] bg-[grey] text-white uppercase rounded-[5px] hover:bg-[black]"
+				target="_blank"
+				>Скачать книгу</a
+			>
+			<a
+				href="<%= book.id %>/update"
+				class="py-[10px] px-[20px] bg-[blue] text-white uppercase rounded-[5px] hover:bg-[black]"
+				>Редактировать книгу</a
+			>
+			<a
+				href="<%= book.id %>/delete/"
+				class="py-[10px] px-[20px] bg-[red] text-white uppercase rounded-[5px] hover:bg-[black]"
+				>Удалить книгу</a
+			>
+		</div>
+	</div>
+</div>
+
+<%- include('../theFooter.ejs') %>

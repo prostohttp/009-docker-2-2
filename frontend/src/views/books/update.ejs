@@ -1,0 +1,54 @@
+<%- include('../theHeader.ejs') %>
+<h1 class="text-center text-[20px] mb-[10px]">Редактирование книги</h1>
+<h3 class="text-3xl text-center font-bold mb-[20px]">"<%= book.title %>"</h3>
+<form method="post" enctype="multipart/form-data">
+	<label for="title" class="block mb-[2px] font-bold">Название</label>
+	<input
+		required
+		type="text"
+		name="title"
+		id="title"
+		value="<%= book.title %>"
+		class="border-[1px] rounded-[4px] h-[40px] px-[20px] w-[400px] border-[#ccc] mb-[20px]"
+	/>
+	<label for="description" class="block mb-[2px] font-bold">Описание</label>
+	<textarea
+		required
+		name="description"
+		id="description"
+		class="border-[1px] rounded-[4px] h-[150px] py-[10px] px-[20px] w-[400px] border-[#ccc]"
+	>
+  <%= book.description %>
+</textarea
+	>
+	<label for="authors" class="block mb-[2px] mt-[20px] font-bold">Авторы</label>
+	<input
+		required
+		type="text"
+		name="authors"
+		id="authors"
+		value="<%= book.authors %>"
+		class="border-[1px] rounded-[4px] h-[40px] px-[20px] w-[400px] border-[#ccc] mb-[20px]"
+	/>
+	<label for="favorite" class="block mb-[2px] mt-[20px] font-bold"
+		>В избранном</label
+	>
+	<input required type="checkbox" name="favorite" id="favorite" <%=
+	book.favorite ? "checked" : "" %> class="border-[1px] rounded-[4px] h-[40px]
+	px-[20px] w-[20px] border-[#ccc] mb-[20px]" />
+	<label for="filecover" class="block mb-[10px] font-bold"
+		>Загрузить новый постер книги</label
+	>
+	<input required type="file" name="filecover" id="filecover" />
+	<label for="filebook" class="block mt-[20px] mb-[10px] font-bold"
+		>Загрузить новый файл книги</label
+	>
+	<input required type="file" name="filebook" id="filebook" />
+	<button
+		class="py-[10px] px-[20px] bg-[red] text-white uppercase rounded-[5px] hover:bg-[black] mt-[20px] flex"
+	>
+		Сохранить
+	</button>
+</form>
+
+<%- include('../theFooter.ejs') %>

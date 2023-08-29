@@ -1,0 +1,64 @@
+<%- include('../theHeader.ejs') %>
+<h1 class="text-3xl text-center font-bold">Создать книгу</h1>
+<form method="post" action="/books/create" enctype="multipart/form-data">
+	<label for="title" class="block mb-[2px] font-bold">Название</label>
+	<input
+		required
+		type="text"
+		name="title"
+		id="title"
+		class="border-[1px] rounded-[4px] h-[40px] px-[20px] w-[400px] border-[#ccc] mb-[20px]"
+	/>
+	<label for="description" class="block mb-[2px] font-bold">Описание</label>
+	<textarea
+		required
+		name="description"
+		id="description"
+		class="border-[1px] rounded-[4px] h-[150px] py-[10px] px-[20px] w-[400px] border-[#ccc]"
+	></textarea>
+	<label for="authors" class="block mb-[2px] mt-[20px] font-bold">Авторы</label>
+	<input
+		required
+		type="text"
+		name="authors"
+		id="authors"
+		class="border-[1px] rounded-[4px] h-[40px] px-[20px] w-[400px] border-[#ccc] mb-[20px]"
+	/>
+	<label for="favorite" class="block mb-[2px] mt-[20px] font-bold"
+		>В избранное</label
+	>
+	<input
+		required
+		type="checkbox"
+		name="favorite"
+		id="favorite"
+		class="border-[1px] rounded-[4px] h-[40px] px-[20px] w-[20px] border-[#ccc] mb-[20px]"
+	/>
+	<label for="filecover" class="block font-bold hover:cursor-pointer"
+		>Постер книги
+	</label>
+	<input
+		required
+		type="file"
+		name="filecover"
+		id="filecover"
+		class="rounded-[4px] my-[20px]"
+	/>
+	<label for="filebook" class="block font-bold hover:cursor-pointer"
+		>Книга
+	</label>
+	<input
+		required
+		type="file"
+		name="filebook"
+		id="filebook"
+		class="rounded-[4px] my-[20px]"
+	/>
+	<button
+		class="py-[10px] px-[20px] bg-[red] text-white uppercase rounded-[5px] hover:bg-[black] flex"
+		type="submit"
+	>
+		Создать
+	</button>
+</form>
+<%- include('../theFooter.ejs') %>

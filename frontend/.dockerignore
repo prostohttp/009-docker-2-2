@@ -1,0 +1,11 @@
+.lh
+node_modules
+package-lock.json
+.gitignore
+.git
+.idea
+.DS_Store
+.vscode
+.DS_Store
+Dockerfile
+.dockerignore
