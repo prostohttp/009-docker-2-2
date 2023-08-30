@@ -6,6 +6,4 @@ package-lock.json
 .idea
 .DS_Store
 .vscode
-.DS_Store
-Dockerfile
-.dockerignore
+Dockerfile/.dockerignore

@@ -1,8 +1,8 @@
 const bookStore = require("../store/books");
 const Book = require("../book");
-const counter = require("../database/redis")
+const counter = require("../api/counterApi");
 
-const indexHandler = (req, res) => {
+const indexHandler = async (req, res) => {
 	const { books } = bookStore;
 	res.render("books/index", { books: books });
 };
@@ -21,8 +21,7 @@ const addBookHandler = (req, res) => {
 			req.files["filebook"][0];
 
 		const newBook = new Book(
-			title,
-			description,
+			title,			description,
 			authors,
 			favorite,
 			"/" + pathFileCover,
@@ -66,9 +65,9 @@ const updateHandler = (req, res) => {
 			description,
 			authors,
 			favorite,
-			filecover: "/" + pathFileCover ,
+			filecover: "/" + pathFileCover,
 			fileName,
-			filebook: "/" + pathFileBook ,
+			filebook: "/" + pathFileBook,
 			originalNameFileCover,
 			originalNameFileBook,
 		};
@@ -85,8 +84,8 @@ const viewHandler = async (req, res) => {
 	const { id } = req.params;
 	const index = books.findIndex((book) => book.id === id);
 	if (index !== -1) {
-		await counter.set(id);
-		res.render("books/view", { book: books[index], count: await counter.get(id) });
+		const response = await counter.fetch(`/counter/${id}/incr`, "POST");
+		res.render("books/view", { book: books[index], count: response.counter });
 	} else {
 		res.status(404);
 		res.render("notFound");
@@ -98,7 +97,7 @@ const deleteHandler = (req, res) => {
 	const { id } = req.params;
 	const index = books.findIndex((book) => book.id === id);
 	if (index !== -1) {
-		counter.delete(id);
+		counter.fetch(`/counter/${id}/del`, "POST");
 		books.splice(index, 1);
 		res.redirect("/");
 	} else {

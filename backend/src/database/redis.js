@@ -34,7 +34,7 @@ const redisGetCounter = async (key) => {
 const redisDeleteCounter = async (key) => {
 	redisErrorHandler();
 	await client.connect();
-	if(await client.get(key)) {
+	if (await client.get(key)) {
 		await client.del(key);
 		await client.disconnect();
 		return "ok";
