@@ -2,7 +2,7 @@ const bookStore = require("../store/books");
 const Book = require("../book");
 const counter = require("../api/counterApi");
 
-const indexHandler = async (req, res) => {
+const indexHandler = (req, res) => {
 	const { books } = bookStore;
 	res.render("books/index", { books: books });
 };
@@ -21,7 +21,8 @@ const addBookHandler = (req, res) => {
 			req.files["filebook"][0];
 
 		const newBook = new Book(
-			title,			description,
+			title,
+			description,
 			authors,
 			favorite,
 			"/" + pathFileCover,
