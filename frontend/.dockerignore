@@ -1,9 +1,9 @@
-.lh
 node_modules
+.vscode
+.lh
 package-lock.json
 .gitignore
 .git
 .idea
 .DS_Store
-.vscode
 Dockerfile/.dockerignore

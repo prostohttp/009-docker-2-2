@@ -9,8 +9,7 @@ const fetchCounter = async (url, method = "GET") => {
 				"Content-Type": "application/json",
 			},
 		});
-		const result = await request.json();
-		return result;
+		return await request.json();
 	} catch (error) {
 		console.log(error);
 	}

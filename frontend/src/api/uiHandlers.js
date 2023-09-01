@@ -53,12 +53,11 @@ const editHandler = (req, res) => {
 const updateHandler = (req, res) => {
 	const { books } = bookStore;
 	const { title, description, authors, favorite, fileName } = req.body;
-	const { path: pathFileCover, originalname: originalNameFileCover } =
-		req.files["filecover"][0];
-	const { path: pathFileBook, originalname: originalNameFileBook } =
-		req.files["filebook"][0];
+	const fileCover = req.files["filecover"][0];
+	const fileBook = req.files["filebook"][0];
 	const { id } = req.params;
 	const index = books.findIndex((book) => book.id === id);
+
 	if (index !== -1) {
 		books[index] = {
 			...books[index],
@@ -66,11 +65,11 @@ const updateHandler = (req, res) => {
 			description,
 			authors,
 			favorite,
-			filecover: "/" + pathFileCover,
+			fileCover: "/" + fileCover.path,
 			fileName,
-			filebook: "/" + pathFileBook,
-			originalNameFileCover,
-			originalNameFileBook,
+			fileBook: "/" + fileBook.path,
+			originalNameFileCover: fileCover.originalname,
+			originalNameFileBook: fileBook.originalname,
 		};
 		res.status(204);
 		res.redirect(`/books/${id}/update`);
@@ -93,12 +92,12 @@ const viewHandler = async (req, res) => {
 	}
 };
 
-const deleteHandler = (req, res) => {
+const deleteHandler = async (req, res) => {
 	const { books } = bookStore;
 	const { id } = req.params;
 	const index = books.findIndex((book) => book.id === id);
 	if (index !== -1) {
-		counter.fetch(`/counter/${id}/del`, "POST");
+		await counter.fetch(`/counter/${id}/del`, "POST");
 		books.splice(index, 1);
 		res.redirect("/");
 	} else {
